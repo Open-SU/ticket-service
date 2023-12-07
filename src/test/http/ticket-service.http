@@ -1,0 +1,40 @@
+### List Tickets
+GRPC localhost:{{port}}/ticket.TicketGrpc/ListTickets
+
+### Get Ticket details
+GRPC localhost:{{port}}/ticket.TicketGrpc/GetTicketDetails
+
+{
+  "id": {{id}}
+}
+
+### Attend Event
+GRPC localhost:{{port}}/ticket.TicketGrpc/AttendEvent
+
+{
+  "attendee_id": "03e4515d-14e1-40b2-9f7f-08ab799c547f",
+  "event_id": "03e4515d-14e1-40b2-9f7f-08ab799c547f"
+}
+
+### Select Bus
+GRPC localhost:{{port}}/ticket.TicketGrpc/SelectBus
+
+{
+  "id": {{id}},
+  "bus_id": "c2f5a0e0-0b7a-4b1e-8e5a-2b8a8b9d7b1a"
+}
+
+### Update Ticket
+GRPC localhost:{{port}}/ticket.TicketGrpc/UpdateTicket
+
+{
+  "id": {{id}},
+  "bus_id": "c2f5a0e0-0b7a-4b1e-8e5a-2b8a8b9d7b1a"
+}
+
+### Delete Ticket
+GRPC localhost:{{port}}/ticket.TicketGrpc/DeleteTicket
+
+{
+  "id": {{id}}
+}

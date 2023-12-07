@@ -1,8 +1,12 @@
 package com.open.su.exceptions;
 
+import com.open.su.controllers.models.UpdateStatusErrorMessage;
 import io.grpc.Status;
 
+import java.util.UUID;
+
 public class TicketServiceException extends RuntimeException {
+
     /**
      * Predefined exception for database errors.
      */
@@ -61,6 +65,16 @@ public class TicketServiceException extends RuntimeException {
                     Status.ALREADY_EXISTS.withDescription(getMessage()).withCause(getCause()).asRuntimeException();
             case INVALID_ARGUMENT ->
                     Status.INVALID_ARGUMENT.withDescription(getMessage()).withCause(getCause()).asRuntimeException();
+        };
+    }
+
+    public UpdateStatusErrorMessage toUpdateStatusErrorMessage(UUID ticketId) {
+        return switch (type) {
+            case NOT_FOUND ->
+                    new UpdateStatusErrorMessage(this, UpdateStatusErrorMessage.Type.TICKET_NOT_FOUND, ticketId);
+            case INVALID_ARGUMENT ->
+                    new UpdateStatusErrorMessage(this, UpdateStatusErrorMessage.Type.INVALID_STATUS, ticketId);
+            default -> new UpdateStatusErrorMessage(this, UpdateStatusErrorMessage.Type.UNEXPECTED_ERROR, ticketId);
         };
     }
 
